@@ -27,10 +27,8 @@ def upgrade():
         name='notificationstatus'
     )
 
-    # 1️⃣ создать enum
     notification_status_enum.create(op.get_bind(), checkfirst=True)
 
-    # 2️⃣ добавить колонку С DEFAULT
     op.add_column(
         'notifications',
         sa.Column(
@@ -41,7 +39,6 @@ def upgrade():
         )
     )
 
-    # 3️⃣ убрать default (чтобы ORM управлял статусом)
     op.alter_column(
         'notifications',
         'status',

@@ -24,9 +24,10 @@ class NotificationRouter:
 
     def route(self, message: NotificationMessage) -> NotificationResult:
         channels_order = self.config.channel_priority.get(message.priority, [])
+        requested_channels = set(message.channels_requested)
 
         for channel in channels_order:
-            if channel not in self.channels:
+            if (channel not in self.channels) or (channel not in requested_channels):
                 continue
             logger.info(f"Trying to route {channel} from {channels_order}")
             channel_result: ChannelResult = self.channels.get(channel).send(message)
@@ -41,8 +42,8 @@ class NotificationRouter:
         return NotificationResult(
             status=Status.FAILED,
             error_message=(
-                f"Notification delivery failed"
-                f"No available channels for priority: {message.priority.value}"
+                f"Notification delivery failed; "
+                f"No available channels for priority: {message.priority.value}; "
                 f"Attempted channels: {channels_order}"
             ),
             sent_at=None,

@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import List, Optional
 from core.notification_message import Priority
 from core.notification_result import Status
@@ -20,8 +20,8 @@ class NotificationResponse(BaseModel):
     created_at: datetime
     sent_at: Optional[datetime]
 
-    class Config:
-        from_attributes = True
+
+    model_config = ConfigDict(from_attributes=True)
 
 
 class NotificationCreateRequest(BaseModel):

@@ -10,7 +10,7 @@ class Priority(Enum):
     HIGH = 'high'
     CRITICAL = 'critical'
 
-@dataclass(frozen=True)
+@dataclass
 class NotificationMessage:
     id: uuid.UUID
     user_id: str
