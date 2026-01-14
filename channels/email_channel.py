@@ -5,7 +5,7 @@ from core.channel_result import ChannelResult
 from core.notification_channel import NotificationChannel
 from core.notification_message import NotificationMessage
 from core.notification_result import NotificationResult
-from channels.settings import ChannelSettings
+from config.channels import ChannelSettings
 
 logger = logging.getLogger(__name__)
 

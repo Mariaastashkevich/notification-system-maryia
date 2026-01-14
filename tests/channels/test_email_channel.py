@@ -4,8 +4,7 @@ from datetime import datetime, timezone
 import pytest
 
 from channels.email_channel import EmailChannel
-from channels.settings import ChannelSettings
-from channels.sms_channel import SMSChannel
+from config.channels import ChannelSettings
 from core.notification_message import NotificationMessage, Priority
 from core.notification_result import Status
 

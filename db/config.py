@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -18,6 +20,11 @@ class Settings(BaseSettings):
         # DSN - это строка для подключения ниже, имеет всегда одинаковый синтаксис
         return f"postgresql+psycopg://{self.DB_USER}:{self.DB_PASS}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
 
-    model_config = SettingsConfigDict(env_file=".env")
+    model_config = SettingsConfigDict(
+        env_file=".env.example",
+        extra="ignore"
+    )
 
-settings = Settings() # type: ignore[call-arg]
+@lru_cache
+def get_settings() -> Settings:
+    return Settings() # type: ignore[call-arg]

@@ -1,5 +1,3 @@
-from typing import List
-
 from interfaces.event_listener import EventListener
 from observer_event_system.notification_event import NotificationEvent
 

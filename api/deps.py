@@ -1,7 +1,7 @@
 from channels.email_channel import EmailChannel
-from channels.settings import ChannelSettings
+from config.channels import ChannelSettings
 from channels.sms_channel import SMSChannel
-from core.notification_message import Priority
+from config.router import RouterSettings
 from core.notification_router import RouterConfig, NotificationRouter
 from notification_service import NotificationService
 from observer_event_system.event_dispatcher import EventDispatcher
@@ -10,6 +10,7 @@ from observer_event_system.listeners.log_listener import LogListener
 
 def get_notification_service() -> NotificationService:
     channels_settings = ChannelSettings()
+    router_settings = RouterSettings()
 
     sms_channel = SMSChannel(settings=channels_settings)
     email_channel = EmailChannel(settings=channels_settings)
@@ -20,12 +21,8 @@ def get_notification_service() -> NotificationService:
     }
 
     router_config = RouterConfig(
-        channel_priority={
-            Priority.LOW: ['sms'],
-            Priority.NORMAL: ['sms'],
-            Priority.HIGH: ['sms', 'email'],
-            Priority.CRITICAL: ['sms', 'email']},
-        fallback_enabled=True
+        channel_priority=router_settings.priority_to_dict(),
+        fallback_enabled=router_settings.fallback_enabled,
     )
 
     router = NotificationRouter(channels, router_config)

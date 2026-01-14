@@ -1,6 +1,3 @@
-import uuid
-from datetime import datetime, timezone
-
 from db.session import sync_engine
 from db.base import Base
 

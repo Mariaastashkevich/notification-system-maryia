@@ -32,8 +32,8 @@ def test_success_notify(mocker, message):
         def __exit__(self, *args): pass
 
     mocker.patch(
-        "notification_service.session_factory",
-        return_value=FakeSession(),
+        "notification_service.get_session_factory",
+        return_value=lambda: FakeSession(),
     )
 
     notification_router = mocker.Mock()
@@ -73,8 +73,8 @@ def test_failed_notify(mocker, message):
         def __exit__(self, *args): pass
 
     mocker.patch(
-        "notification_service.session_factory",
-        return_value=FakeSession(),
+        "notification_service.get_session_factory",
+        return_value=lambda: FakeSession(),
     )
 
     notification_router = mocker.Mock()

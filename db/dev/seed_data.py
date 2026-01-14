@@ -19,29 +19,6 @@ def insert_data():
             sent_at=None,
         )
 
-        # notif_2 = NotificationsOrm(
-        #     id=uuid.uuid4(),
-        #     user_id="user_2",
-        #     message="Your order has been shipped",
-        #     channels_requested=["sms", "email"],
-        #     channel_used="sms",
-        #     status=NotificationStatus.SENT,
-        #     error_message=None,
-        #     created_at=datetime.now(timezone.utc),
-        #     sent_at=datetime.now(timezone.utc),
-        # )
-        #
-        # notif_3 = NotificationsOrm(
-        #     id=uuid.uuid4(),
-        #     user_id="user_3",
-        #     message="Payment failed",
-        #     channels_requested=["sms"],
-        #     channel_used="sms",
-        #     status=NotificationStatus.FAILED,
-        #     error_message="SMS provider error",
-        #     created_at=datetime.now(timezone.utc),
-        #     sent_at=None,
-        # )
 
         session.add_all([notif_1])
         session.commit()

@@ -5,7 +5,6 @@ from typing import Optional, Annotated
 from sqlalchemy import Text, Enum, JSON
 
 from core.notification_message import Priority
-from core.notification_result import Status
 from db.enums import NotificationStatus
 from db.base import Base
 from sqlalchemy.orm import Mapped, mapped_column

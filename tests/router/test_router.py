@@ -2,10 +2,7 @@ import uuid
 from datetime import datetime, timezone
 
 import pytest
-from channels.email_channel import EmailChannel
-from channels.settings import ChannelSettings
-from channels.sms_channel import SMSChannel
-from core.notification_channel import NotificationChannel
+
 from core.notification_message import NotificationMessage, Priority
 from core.notification_result import NotificationResult, Status
 from core.notification_router import NotificationRouter, RouterConfig

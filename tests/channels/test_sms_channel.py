@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 
 import pytest
 
-from channels.settings import ChannelSettings
+from config.channels import ChannelSettings
 from channels.sms_channel import SMSChannel
 from core.notification_message import NotificationMessage, Priority
 from core.notification_result import Status

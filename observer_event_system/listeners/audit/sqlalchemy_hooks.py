@@ -2,7 +2,6 @@ from sqlalchemy import event, inspect
 from sqlalchemy.orm import Session
 
 from db.enums import AuditOperation
-from db.models.audit_trail import AuditTrailOrm
 from db.models.notification import NotificationsOrm
 from observer_event_system.listeners.audit.audit_repository import AuditRepository
 

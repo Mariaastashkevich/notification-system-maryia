@@ -6,7 +6,7 @@ from core.notification_result import Status
 from core.notification_router import NotificationRouter
 from db.enums import NotificationStatus
 from db.models.notification import NotificationsOrm
-from db.session import session_factory
+from db.session import get_session_factory
 from observer_event_system.event_dispatcher import EventDispatcher
 from observer_event_system.notification_event import NotificationEvent
 
@@ -29,7 +29,7 @@ class NotificationService:
             created_at=message.created_at,
             sent_at=None,
         )
-        with session_factory() as session:
+        with get_session_factory()() as session:
             session.add(notification)
             session.commit()
             session.refresh(notification)
@@ -64,7 +64,7 @@ class NotificationService:
 
     @staticmethod
     def get_notification(notification_id: uuid.UUID) -> NotificationResponse | None:
-        with session_factory() as session:
+        with get_session_factory()() as session:
             notification = (
                     session
                     .query(NotificationsOrm)

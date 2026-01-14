@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from api.deps import get_notification_service
 from api.schemas.notification import NotificationCreateRequest, NotificationResponse
 from core.notification_message import NotificationMessage
-from db.models.notification import NotificationsOrm
+# from db.models.notification import NotificationsOrm
 from notification_service import NotificationService
 
 router = APIRouter()

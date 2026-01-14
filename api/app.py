@@ -1,5 +1,5 @@
 from api.routes.notifications import router as notifications_router
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI
 
 
 def create_app() -> FastAPI:
